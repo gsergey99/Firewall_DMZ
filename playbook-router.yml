@@ -12,6 +12,8 @@
         packages:
         - iptables
         - iptables-persistent
+        - dnsmasq
+
 
     - sysctl:
         name: net.ipv4.ip_forward

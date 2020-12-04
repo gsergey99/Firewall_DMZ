@@ -2,17 +2,6 @@
 - hosts: all
   become: true
   tasks:
-    - name: update apt
-      apt: update_cache=yes
-
-    - name: install depends
-      apt:
-        name: "{{ packages }}"
-      vars:
-        packages:
-        - nginx-light
-        - bmon
-    
     - name: network config
       notify: restart network
       copy:
@@ -26,10 +15,7 @@
                 post-up ip route del default dev eth0 || true
 
           auto eth1
-          iface eth1 inet static
-                address 10.0.0.2
-                netmask 255.255.255.0
-                gateway 10.0.0.1
+          iface eth1 inet dhcp
 
   handlers:
     - name: restart network

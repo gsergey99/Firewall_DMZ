@@ -38,8 +38,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "pc1" do |node|
     node.vm.hostname = "pc1"
-    node.vm.network "private_network", type: "dhcp", virtualbox__intnet: "mz"
-    node.vm.provision "shell", inline: "ip route del default || true; ip route add default via 192.168.0.1"
+    node.vm.network "private_network", auto_config: false, virtualbox__intnet: "mz"
+
+    node.vm.provision "ansible" do |ansible|
+      ansible.verbose = "v"
+      ansible.playbook = "playbook-pc1.yml"
+    end
   end
 
 end
