@@ -8,4 +8,5 @@
 
 -   bmon --> Monitorización de Red (Web Server)
 -   dnsmasq --> DNS y DHCP (Router)
+-   tftp --> Servicio de Gestión de Archivos
 
