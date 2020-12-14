@@ -13,6 +13,10 @@
         - nginx-light
         - bmon
         - tftpd-hpa
+    - name:
+      copy:
+        src: /files/hola.txt
+        dest: /home/vagrant/hola.txt
     
     - name: network config
       notify: restart network
