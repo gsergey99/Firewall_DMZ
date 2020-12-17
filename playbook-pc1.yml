@@ -17,6 +17,13 @@
           auto eth1
           iface eth1 inet dhcp
 
+    - name: install depends
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - tftp-hpa
+
   handlers:
     - name: restart network
       service: name=networking state=restarted
