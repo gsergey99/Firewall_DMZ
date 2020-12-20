@@ -10,9 +10,10 @@
         name: "{{ packages }}"
       vars:
         packages:
-        - nginx-light
+        - apache2
         - bmon
         - tftpd-hpa
+        - nmap
 
     - name: network config
       notify: restart network

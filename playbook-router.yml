@@ -13,6 +13,17 @@
         - iptables
         - iptables-persistent
         - dnsmasq
+        - nmap
+
+    - name: copy files
+      copy:
+        src: router_conf.sh
+        dest: /home/vagrant/router_conf.sh
+      run-once: true
+
+    - name: Run config script
+      shell: sh router_conf.sh
+      run-once: true
 
     - sysctl:
         name: net.ipv4.ip_forward

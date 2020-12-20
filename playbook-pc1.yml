@@ -23,6 +23,7 @@
       vars:
         packages:
         - tftp-hpa
+        - nmap
 
   handlers:
     - name: restart network
