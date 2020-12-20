@@ -23,7 +23,6 @@ Vagrant.configure("2") do |config|
       ansible.verbose = "v"
       ansible.playbook = "playbook-router.yml"
     end
-
   end
 
   config.vm.define "web-server" do |node|

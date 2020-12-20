@@ -13,7 +13,7 @@
         - nginx-light
         - bmon
         - tftpd-hpa
-   
+
     - name: network config
       notify: restart network
       copy:
