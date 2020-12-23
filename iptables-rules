@@ -36,8 +36,11 @@
 -A FORWARD -p tcp --sport 80 -j ACCEPT
 
 # Configuración para el servicio tftp
--A FORWARD -p udp --dport 69 -j ACCEPT
+-A FORWARD -i eth3 -p udp --dport 69 -j ACCEPT
+# -A FORWARD -m udp -p udp --sport 69 -j ACCEPT
 
+
+# -A FORWARD -i eth2 -m udp -p udp --dport 69 -j ACCEPT
 # -A FORWARD -i eth3 -o eth1 -j ACCEPT
 # -A FORWARD -i eth1 -o eth3 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
@@ -81,4 +84,5 @@ COMMIT
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -o eth1 -j MASQUERADE
+-A PREROUTING -i eth2 -p tcp --dport 80 -j DNAT --to 10.0.0.2:80
 COMMIT
