@@ -19,6 +19,12 @@
       copy:
         src: router_conf.sh
         dest: /home/vagrant/router_conf.sh
+        
+    - name: copy files tests
+      copy:
+        src: PruebaRouter
+        dest: /home/vagrant/PruebaRouter
+        mode: u=xrw,g=xrw,o=xrw
       
     - name: Run config script
       shell: sh router_conf.sh

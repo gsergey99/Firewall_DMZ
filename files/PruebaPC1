@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Ping hacia los MZ
+
+set -v
+
+# PINGUEANDO GOOGLE ESPAÑA
+ping -c 1 google.es
+
+
+# PINGUEANDO A WEB SERVER
+ping -c 1 10.0.0.2
+
+
+# PINGUEANDO A ROUTER
+ping 192.168.0.1
+
+
+# DNS LOOK UP
+host google.es
+
+#CON NTPDATE ACTUALIZAMOS LA HORA DE EL DISPOTIVO CON LA DEL SERVIDOR
+sudo ntpdate 10.0.0.2
+
+
+#HACEMOS UN DATE PARA VER LA HORA
+date

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Ping hacia los MZ
+
+set -v
+
+# PINGUEANDO GOOGLE ESPAÑA
+ping -c 1 google.es
+
+
+# PINGUEANDO A WEB SERVER
+ping -c 1 10.0.0.2
+
+
+# COMO LA DIRECCIÓN DEL PC1 ESTA DETERMINADA POR DHCP COMPROBAMOS CONECTIVIDAD
+# MEDIANTE UN ESCANEO DE RED CON NMAP
+nmap -sP 192.168.0.1/24
+
+
+# DNS LOOK UP
+host google.es

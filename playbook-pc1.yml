@@ -24,6 +24,12 @@
         packages:
         - ntpdate
         - nmap
+        
+    - name: copy files tests
+      copy:
+        src: PruebaPC1
+        dest: /home/vagrant/PruebaPC1
+        mode: u=xrw,g=xrw,o=xrw
 
   handlers:
     - name: restart network
