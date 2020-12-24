@@ -22,7 +22,7 @@
         name: "{{ packages }}"
       vars:
         packages:
-        - tftp-hpa
+        - ntpdate
         - nmap
 
   handlers:

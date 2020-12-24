@@ -12,7 +12,7 @@
         packages:
         - apache2
         - bmon
-        - tftpd-hpa
+        - ntp
         - nmap
 
     - name: network config
