@@ -63,6 +63,7 @@
 # Configuración para las máquinas que tengan salida a internet
 
 -A OUTPUT -p tcp --dport 80 -m state --state NEW -j ACCEPT
+-A OUTPUT -p tcp --dport 443 -j ACCEPT
 
 
 # Configuración para icmp

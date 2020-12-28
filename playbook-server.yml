@@ -19,6 +19,11 @@
         src: PruebaServer
         dest: /home/vagrant/PruebaServer
         mode: u=xrw,g=xrw,o=xrw
+    - name: copy bmon.py
+      copy:
+        src: bmon.py
+        dest: /home/vagrant/bmon.py
+      
 
     - name: network config
       notify: restart network
