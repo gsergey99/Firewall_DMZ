@@ -71,6 +71,13 @@
 -A OUTPUT -j LOG --log-prefix="[OUTPUT] "
 -A OUTPUT -j DROP
 
+# Configuracion del log de drop de packetes de entrada y salida 
+-N LOGGING
+-A INPUT -j LOGGING
+-A OUTPUT -j LOGGING
+-A LOGGING -m limit --limit 2/min -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
+-A LOGGING -j DROP
+
 COMMIT
 *raw
 :PREROUTING ACCEPT [0:0]
@@ -84,3 +91,5 @@ COMMIT
 -A POSTROUTING -o eth1 -j MASQUERADE
 -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:80
 COMMIT
+
+
