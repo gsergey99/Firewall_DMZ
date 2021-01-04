@@ -28,7 +28,7 @@ Para destruir todos los nodos, usaremos:
 
 ## Finalidad de los ficheros
 
-Para la configuración del nodo **router**, hemos realizado un archivo que configura el servicio **DNS** y **DHCP**. Este archivo, se configura automáticamente a través de la herramienta *Ansible*.
+Para la configuración del nodo **router**, hemos realizado un archivo que configura el servicio **DNS** y **DHCP**. Este archivo se configura automáticamente a través de la herramienta *Ansible*. Este archivo es denominado **router_config**.
 
 Para los casos de prueba, hemos realizado tres scripts para cada una de las máquinas con el objetivo de realizar una serie de tests, por ejemplo: enviar paquetes ICMP a host, salida a Internet...etc:
 
