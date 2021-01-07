@@ -14,11 +14,17 @@
         - iptables-persistent
         - dnsmasq
         - nmap
+        - curl
 
-    - name: copy files
+    - name: copy files config
       copy:
         src: router_conf.sh
         dest: /home/vagrant/router_conf.sh
+
+    - name: copy files netdata
+      copy:
+        src: NetData.sh
+        dest: /home/vagrant/NetData.sh
         
     - name: copy files tests
       copy:

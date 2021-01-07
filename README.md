@@ -38,6 +38,8 @@ Para los casos de prueba, hemos realizado tres scripts para cada una de las máq
 
 -   PruebaPC1: PING gooogle.es, PING router, PING Web-server, DNS look up a google.es, WGET Web-server, comporbación del servidor NTP.
 
-Para la monitorización, hemos instalado el paquete **bmon** con el objetivo de obtener una monitorización en cada una de las interfaces. Para ello, hemos implementado un script de python con el objetivo de monitorizar cada uno de las interfaces juntos con diferentes opciones del **Web-server**.
+-   NetData.sh: Este archivo de configuración permite instalar de forma manual la herramienta de monitorización de **Net-Data**, ya que al ser un instalador automático, el usuario solo tiene que dar los permisos para que se instalen los paquetes asociados a dicha herramienta.
+
+Para la monitorización, hemos instalado el paquete **bmon** con el objetivo de obtener una monitorización en cada una de las interfaces. Para ello, hemos implementado un script de python con el objetivo de monitorizar cada uno de las interfaces juntos con diferentes opciones del **Web-server**. Además, tambíen hemos incluido otra herramienta de monitorización en el nodo **Router** cone le objetivo de poder visualizar la monitorización de nuestra herramienta de iptables.
 
 ## Enlace del vídeo

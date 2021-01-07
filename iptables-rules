@@ -17,9 +17,13 @@
 -A INPUT -p udp --sport 68 -j ACCEPT
 -A INPUT -p udp --sport 67 -j ACCEPT
 
+# Conexión y configuracion de netstat (dashboard)
+-A INPUT -p tcp --dport 19999 -j ACCEPT
+
 # Conexión al exterior para cada uno de las máquinas
 -A INPUT -p tcp --dport 80 -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 443 -j ACCEPT
+
 
 -A INPUT -p icmp -j ACCEPT
 
@@ -33,6 +37,9 @@
 
 -A FORWARD -p tcp --dport 80 -j ACCEPT
 -A FORWARD -p tcp --sport 80 -j ACCEPT
+
+-A FORWARD -p tcp --dport 443 -j ACCEPT
+-A FORWARD -p tcp --sport 443 -j ACCEPT
 
 # Configuración para el servicio ntp
 
@@ -61,6 +68,10 @@
 -A OUTPUT -p udp --sport 68 -j ACCEPT
 -A OUTPUT -p udp --sport 67 -j ACCEPT
 
+# Conexión y configuracion de netstat (dashboard)
+-A OUTPUT -p tcp --dport 19999 -j ACCEPT
+
+
 # Configuración para las máquinas que tengan salida a internet
 
 -A OUTPUT -p tcp --dport 80 -m state --state NEW -j ACCEPT
@@ -73,7 +84,7 @@
 -A OUTPUT -j LOG --log-prefix="[OUTPUT] "
 -A OUTPUT -j DROP
 
-# Configuracion del log de drop de packetes de entrada y salida 
+# Configuracion del log de drop de packetes de entrada y salida. Se guarda en /var/log/messages
 -N LOGGING
 -A INPUT -j LOGGING
 -A OUTPUT -j LOGGING
@@ -92,6 +103,8 @@ COMMIT
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -o eth1 -j MASQUERADE
 -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:80
+-A PREROUTING -i eth1 -p tcp --dport 19999 -j DNAT --to-destination 192.168.1.123:19999
+
 COMMIT
 
 
