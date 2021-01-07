@@ -68,7 +68,7 @@
 -A OUTPUT -p udp --sport 68 -j ACCEPT
 -A OUTPUT -p udp --sport 67 -j ACCEPT
 
-# Conexión y configuracion de netstat (dashboard)
+# Conexión y configuracion de netdata (dashboard)
 -A OUTPUT -p tcp --dport 19999 -j ACCEPT
 
 
