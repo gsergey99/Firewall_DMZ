@@ -27,6 +27,8 @@ wget 10.0.0.2:80
 # CAMBIAMOS LA HORA 
 sudo date -s 23:00:00
 
+sleep 2
+
 sudo ntpdate 10.0.0.2
 
 sleep 5

@@ -23,8 +23,6 @@
       vars:
         packages:
         - ntpdate
-        - nmap
-        - curl
         
     - name: copy files tests
       copy:

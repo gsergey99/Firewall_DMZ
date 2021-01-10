@@ -32,14 +32,21 @@ Para la configuración del nodo **router**, hemos realizado un archivo que confi
 
 Para los casos de prueba, hemos realizado tres scripts para cada una de las máquinas con el objetivo de realizar una serie de tests, por ejemplo: enviar paquetes ICMP a host, salida a Internet...etc:
 
--   PruebaRouter: PING gooogle.es, PING Web-server, Saber si el cliente tiene una IP estática (Comprueba si el servidor DHCP funciona), DNS look up a google.es.
+-   PruebaRouter: PING google.es, PING Web-server, Saber si el cliente tiene una IP estática (Comprueba si el servidor DHCP funciona), DNS look up a google.es.
 
--   PruebaServer: PING gooogle.es, PING router, DNS look up a google.es.
+-   PruebaServer: PING google.es, PING router, DNS look up a google.es.
 
--   PruebaPC1: PING gooogle.es, PING router, PING Web-server, DNS look up a google.es, WGET Web-server, comporbación del servidor NTP.
+-   PruebaPC1: PING google.es, PING router, PING Web-server, DNS look up a google.es, WGET Web-server, comporbación del servidor NTP.
+
+Para la monitorización del nodo **Web-server**, hemos instalado el paquete **bmon** con el objetivo de obtener una monitorización en cada una de las interfaces. Para ello, hemos implementado un script de python con el objetivo de monitorizar cada uno de las interfaces juntos con diferentes opciones del **Web-server**. Además, tambíen hemos incluido otra herramienta de monitorización en el nodo **router** con el objetivo de poder visualizar la monitorización de nuestra herramienta de iptables.
 
 -   NetData.sh: Este archivo de configuración permite instalar de forma manual la herramienta de monitorización de **Net-Data**, ya que al ser un instalador automático, el usuario solo tiene que dar los permisos para que se instalen los paquetes asociados a dicha herramienta.
 
-Para la monitorización, hemos instalado el paquete **bmon** con el objetivo de obtener una monitorización en cada una de las interfaces. Para ello, hemos implementado un script de python con el objetivo de monitorizar cada uno de las interfaces juntos con diferentes opciones del **Web-server**. Además, tambíen hemos incluido otra herramienta de monitorización en el nodo **Router** cone le objetivo de poder visualizar la monitorización de nuestra herramienta de iptables.
+**¡NOTA!** Para poder, visualizar la herramienta de monitorización del nodo **router** en el navegador por defecto, se tiene que añadir una regla en el archivo de _iptables-rule_, que será la siguiente:
+
+```
+[TABLA NAT]
+-A PREROUTING -i eth1 -p tcp --dport 19999 -j DNAT --to-destination <Router-IP>:19999
+```
 
 ## Enlace del vídeo

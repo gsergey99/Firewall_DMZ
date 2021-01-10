@@ -17,23 +17,24 @@
 -A INPUT -p udp --sport 68 -j ACCEPT
 -A INPUT -p udp --sport 67 -j ACCEPT
 
-# Conexión y configuracion de netdata (dashboard)
+# Conexión y configuracion de Net-Data (dashboard)
 -A INPUT -p tcp --dport 19999 -j ACCEPT
 
 # Conexión al exterior para cada uno de las máquinas
 -A INPUT -p tcp --dport 80 -m state --state NEW -j ACCEPT
 -A INPUT -p tcp --dport 443 -j ACCEPT
 
-
+# Permite mandar paquetes ICMP
 -A INPUT -p icmp -j ACCEPT
 
 -A INPUT -j DROP
 
 
-
 -A FORWARD -j LOG --log-prefix="[FORWARD] "
 
 -A FORWARD -p icmp -j ACCEPT
+
+# Configuración para el servicio web
 
 -A FORWARD -p tcp --dport 80 -j ACCEPT
 -A FORWARD -p tcp --sport 80 -j ACCEPT
@@ -41,24 +42,16 @@
 -A FORWARD -p tcp --dport 443 -j ACCEPT
 -A FORWARD -p tcp --sport 443 -j ACCEPT
 
-# Configuración para el servicio ntp
+# Configuración para el servicio NTP
 
 -A FORWARD -p udp --dport 123 -j ACCEPT
-
-
-
-# -A FORWARD -i eth3 -o eth1 -j ACCEPT
-# -A FORWARD -i eth1 -o eth3 -m state --state ESTABLISHED,RELATED -j ACCEPT
-
--A FORWARD -i eth2 -o eth1 -j ACCEPT
--A FORWARD -i eth1 -o eth2 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 -A FORWARD -j DROP
 
 -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 -A OUTPUT -o eth0 -p tcp --sport 22 -j ACCEPT
 
-# Configuración DNS para establecer updates de las máquinas
+# Configuración DNS para establecer updates en las máquinas
 
 -A OUTPUT -p tcp --dport 53 -m state --state NEW -j ACCEPT
 -A OUTPUT -p udp --dport 53 -m state --state NEW -j ACCEPT
@@ -68,7 +61,7 @@
 -A OUTPUT -p udp --sport 68 -j ACCEPT
 -A OUTPUT -p udp --sport 67 -j ACCEPT
 
-# Conexión y configuracion de netdata (dashboard)
+# Conexión y configuracion de Net-Data (dashboard)
 -A OUTPUT -p tcp --dport 19999 -j ACCEPT
 
 
@@ -84,7 +77,7 @@
 -A OUTPUT -j LOG --log-prefix="[OUTPUT] "
 -A OUTPUT -j DROP
 
-# Configuracion del log de drop de packetes de entrada y salida. Se guarda en /var/log/messages
+# Configuracion del log de drop de paquetes de entrada y salida. Se guarda en /var/log/messages
 -N LOGGING
 -A INPUT -j LOGGING
 -A OUTPUT -j LOGGING
@@ -103,7 +96,7 @@ COMMIT
 :POSTROUTING ACCEPT [0:0]
 -A POSTROUTING -o eth1 -j MASQUERADE
 -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:80
--A PREROUTING -i eth1 -p tcp --dport 19999 -j DNAT --to-destination 192.168.1.123:19999
+-A PREROUTING -i eth1 -p tcp --dport 19999 -j DNAT --to-destination 192.168.1.128:19999
 
 COMMIT
 
